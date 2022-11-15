@@ -1,0 +1,13 @@
+FROM node:18-alpine as build
+WORKDIR /app
+COPY . .
+RUN yarn set version berry && \
+    yarn config set nodeLinker node-modules && \
+    yarn install --immutable
+RUN yarn build
+
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=build /app/dist ./
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

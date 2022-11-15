@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&family=Lato&family=Lobster&family=Lora:wght@400;500;600&family=Mulish:wght@300;400;500;600&family=Nunito+Sans:wght@300;400;600;700&family=Nunito:wght@200;300;400;500;600;700&family=Open+Sans&family=Roboto+Slab:wght@200;300;400;500;600;700&family=Work+Sans:wght@200;300;400;500;600&display=swap');
+
+@font-face {
+    font-family: "Dot Matrix";
+    src: url("./DOTMATRI.TTF");
+}
+
+html, body, #app {
+    background-color: whitesmoke;
+}
+
+$lato: 'Lato', sans-serif;
+$lobster: 'Lobster', cursive;
+$lora: 'Lora', serif;
+$mulish: 'Mulish', sans-serif;
+$nunito: 'Nunito', sans-serif;
+$nunito-sans: 'Nunito Sans', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
+$roboto: 'Roboto Slab', serif;
+$work-sans: 'Work Sans', sans-serif;
+$abyssinica: 'Abyssinica SIL', serif;
+$dot-matrix: 'Dot Matrix', serif;
+
+.dot-matrix {
+    font-family: $dot-matrix;
+}
+
+.lato {
+    font-family: $lato;
+}
+
+.lobster {
+    font-family: $lobster;
+}
+
+.lora {
+    font-family: $lora;
+}
+
+.mulish {
+    font-family: $mulish;
+}
+
+.nunito {
+    font-family: $nunito;
+}
+
+.nunito-sans {
+    font-family: $nunito-sans;
+}
+
+.open-sans {
+    font-family: $open-sans;
+}
+
+.roboto {
+    font-family: $roboto;
+}
+
+.work-sans {
+    font-family: $work-sans;
+}
+
+.abyssinica {
+    font-family: $abyssinica;
+}
+
+.curvy-bg {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' preserveAspectRatio='xMinYMin meet'><path d='M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z'></path></svg>")
+}
+
+
+//REMOVE UGLY ARROWS FROM input[type=number]
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.styled-scrollbars {
+    --scrollbar-foreground: rgb(66, 65, 65);
+    --scrollbar-background: rgba(0,0,0,0);
+    /* Foreground, Background */
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+}
+.styled-scrollbars::-webkit-scrollbar {
+    width: 7px; /* Mostly for vertical scrollbars */
+    height: 10px; /* Mostly for horizontal scrollbars */
+}
+.styled-scrollbars::-webkit-scrollbar-thumb { /* Foreground */
+    background: var(--scrollbar-foreground);
+    border-radius: 5px;
+}
+.styled-scrollbars::-webkit-scrollbar-track { /* Background */
+    background: var(--scrollbar-background);
+}
+
+@import "./tw-extensions.scss";
+
+@font-face {
+    font-family: "Dot Matrix";
+    src: url("./DOTMATRI.TTF");
+}
