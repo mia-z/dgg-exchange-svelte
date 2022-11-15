@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { createChart, type IChartApi, type ISeriesApi, type Nominal } from "lightweight-charts";
-    import { onMount } from "svelte";
+    import { createChart, PriceScaleMode, type IChartApi, type ISeriesApi, type Nominal } from "lightweight-charts";
+    import { onMount, onDestroy } from "svelte";
     import Queries from "../lib/Queries";
     import { useQuery } from "@sveltestack/svelte-query";
     import { WatchingMarketsSimple, WatchingMarkets } from "../WatchingMarkets.store";
@@ -20,31 +20,78 @@
     });
 
     let chart: IChartApi;
+
+    let smoothTimeIncrementer: ISeriesApi<"Line">;
     let seriesSets: SeriesSet = {};
 
     WatchingMarkets.subscribe(s => {
-        for (const [_, { question, id }] of Object.entries(s)) {
+        for (const [_, { question, id, probability }] of Object.entries(s)) {
             if (!seriesSets[id]) {
                 seriesSets[id] = {
                     id: id,
                     question: question,
-                    lineData: chart.addLineSeries({ title: question, color: stringToColour(id) })
+                    lineData: chart.addLineSeries({ title: question, color: stringToColour(id), autoscaleInfoProvider: () => ({
+                        priceRange: {
+                            minValue: 0,
+                            maxValue: 100
+                            }
+                        }) 
+                    }),
+                    lastFetchedValue: probability*100,
+                    currentValue: probability*100
                 }
             }
         }
     });
 
     const updateTickers = (newData: Manifold.MarketFull[]) => {
-        for (const [key, { question, id, lineData }] of Object.entries(seriesSets)) {
+        for (let [key, { question, id, lineData, lastFetchedValue, currentValue }] of Object.entries(seriesSets)) {
             const thisLinesData = newData.find(x => x.id === id);
             if (!thisLinesData) {
                 console.log("got some data where a line didnt exist, removing");
                 chart.removeSeries(seriesSets[id].lineData);
                 delete seriesSets[id]
             } else {
-                lineData.update({ time: Date.now() as  Nominal<number, "UTCTimestamp">, value: Math.trunc(thisLinesData.probability*100) })
+                clearInterval(seriesSets[id].tweener);
+                seriesSets[id].lastFetchedValue = thisLinesData.probability*100;
+
+                seriesSets[id].tweener = setInterval(() => {
+                    console.log("poller", seriesSets[id].currentValue, seriesSets[id].lastFetchedValue, thisLinesData.probability*100)
+
+                    if (seriesSets[id].currentValue < seriesSets[id].lastFetchedValue) {
+                        seriesSets[id].currentValue += 0.01;
+                        if (seriesSets[id].currentValue >= seriesSets[id].lastFetchedValue) {
+                            seriesSets[id].currentValue = seriesSets[id].lastFetchedValue;
+                        }
+                    }
+
+                    if (seriesSets[id].currentValue > seriesSets[id].lastFetchedValue) {
+                        seriesSets[id].currentValue -= 0.1;
+                        if (seriesSets[id].currentValue <= seriesSets[id].lastFetchedValue) {
+                            seriesSets[id].currentValue = seriesSets[id].lastFetchedValue;
+                        }
+                    }
+
+                    lineData.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: currentValue });
+                }, 16)
             }
         }
+    }
+
+    let smoothTicker;
+    const smoothUpdater = () => {
+        // smoothTicker = setInterval(() => {
+        //     smoothTimeIncrementer.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: 0 });
+        //     for (let [key, { question, id, lineData, lastFetchedValue, currentValue }] of Object.entries(seriesSets)) {
+        //         console.log("smooth", lastFetchedValue, currentValue)
+        //         lineData.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: currentValue });
+        //     }
+        // }, 16);
+    }
+
+    const reInitSmoothTicker = () => {
+        clearInterval(smoothTicker);
+        smoothUpdater();
     }
 
     onMount(() => {
@@ -57,9 +104,11 @@
             grid: {
                 vertLines: {
                     color: "#494949",
+                    visible: false
                 },
                 horzLines: {
                     color: "#494949",
+                    visible: false
                 },
             },
             layout: {
@@ -70,7 +119,12 @@
 
             }
         });
-        
+        smoothTimeIncrementer = chart.addLineSeries({
+            visible: false,
+            
+        });
+        smoothUpdater();
+
         observer = new ResizeObserver(([entry]) => {
             width = entry.contentRect.width;
             height = entry.contentRect.height;
@@ -78,6 +132,12 @@
         });
         observer.observe(chartElement);
     });
+
+    onDestroy(() => {
+        if (smoothTicker && smoothTicker > -1) {
+            clearInterval(smoothTicker);
+        }
+    });  
 
     {$queryHandler}
 </script>
@@ -87,4 +147,5 @@
     <div id={"chart-box"} class={"h-full"} bind:this={chartElement}>
         <!-- The graph goes in here! -->
     </div>
+    <!-- <button class={"absolute left-30 -bottom-20 h-10 w-20 bg-red-500"}>ADD</button> -->
 </div>
