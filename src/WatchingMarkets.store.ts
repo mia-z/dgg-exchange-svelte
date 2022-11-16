@@ -23,8 +23,6 @@ const WatchingMarketsStore = () => {
         });
     }
 
-    
-
     return {
         subscribe,
         set,
