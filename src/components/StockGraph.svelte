@@ -32,8 +32,8 @@
                     question: question,
                     lineData: chart.addLineSeries({ title: question, color: stringToColour(id), autoscaleInfoProvider: () => ({
                         priceRange: {
-                            minValue: 0,
-                            maxValue: 100
+                            minValue: 10,
+                            maxValue: 83
                             }
                         }) 
                     }),
@@ -59,7 +59,7 @@
                     console.log("poller", seriesSets[id].currentValue, seriesSets[id].lastFetchedValue, thisLinesData.probability*100)
 
                     if (seriesSets[id].currentValue < seriesSets[id].lastFetchedValue) {
-                        seriesSets[id].currentValue += 0.01;
+                        seriesSets[id].currentValue += 0.11;
                         if (seriesSets[id].currentValue >= seriesSets[id].lastFetchedValue) {
                             seriesSets[id].currentValue = seriesSets[id].lastFetchedValue;
                         }
@@ -72,26 +72,10 @@
                         }
                     }
 
-                    lineData.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: currentValue });
-                }, 16)
+                    lineData.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: seriesSets[id].currentValue });
+                }, 50)
             }
         }
-    }
-
-    let smoothTicker;
-    const smoothUpdater = () => {
-        // smoothTicker = setInterval(() => {
-        //     smoothTimeIncrementer.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: 0 });
-        //     for (let [key, { question, id, lineData, lastFetchedValue, currentValue }] of Object.entries(seriesSets)) {
-        //         console.log("smooth", lastFetchedValue, currentValue)
-        //         lineData.update({ time: Date.now() as Nominal<number, "UTCTimestamp">, value: currentValue });
-        //     }
-        // }, 16);
-    }
-
-    const reInitSmoothTicker = () => {
-        clearInterval(smoothTicker);
-        smoothUpdater();
     }
 
     onMount(() => {
@@ -123,7 +107,6 @@
             visible: false,
             
         });
-        smoothUpdater();
 
         observer = new ResizeObserver(([entry]) => {
             width = entry.contentRect.width;
@@ -132,12 +115,6 @@
         });
         observer.observe(chartElement);
     });
-
-    onDestroy(() => {
-        if (smoothTicker && smoothTicker > -1) {
-            clearInterval(smoothTicker);
-        }
-    });  
 
     {$queryHandler}
 </script>
