@@ -21,7 +21,6 @@
 
     let chart: IChartApi;
 
-    let smoothTimeIncrementer: ISeriesApi<"Line">;
     let seriesSets: SeriesSet = {};
 
     WatchingMarkets.subscribe(s => {
@@ -56,8 +55,6 @@
                 seriesSets[id].lastFetchedValue = thisLinesData.probability*100;
 
                 seriesSets[id].tweener = setInterval(() => {
-                    console.log("poller", seriesSets[id].currentValue, seriesSets[id].lastFetchedValue, thisLinesData.probability*100)
-
                     if (seriesSets[id].currentValue < seriesSets[id].lastFetchedValue) {
                         seriesSets[id].currentValue += 0.11;
                         if (seriesSets[id].currentValue >= seriesSets[id].lastFetchedValue) {
@@ -103,10 +100,7 @@
 
             }
         });
-        smoothTimeIncrementer = chart.addLineSeries({
-            visible: false,
-            
-        });
+
 
         observer = new ResizeObserver(([entry]) => {
             width = entry.contentRect.width;

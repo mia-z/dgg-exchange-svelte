@@ -3,7 +3,8 @@ WORKDIR /app
 COPY . .
 RUN yarn set version berry && \
     yarn config set nodeLinker node-modules && \
-    yarn install --immutable
+    yarn install && \
+    yarn cache clean
 RUN yarn build
 
 FROM nginx:alpine
