@@ -2,14 +2,12 @@
     import { WatchingMarkets } from "../WatchingMarkets.store";
     import { SortedMarkets } from "../Markets.store";
     import Chip, { Set, Text } from "@smui/chips";
-    import { MarketTicker } from "../MarketTicker.store"
     import emotes from "../styles/emotes.json";
     import { getRandomIntInclusive } from "../lib/Utils";
 
     const emoteList: DggEmote[] = emotes;
     const randomEmote = emoteList.at(getRandomIntInclusive(0, emoteList.length));
     const randomPhrase = getRandomIntInclusive(0, 10) > 7 ? "P*PE wins" : "YEE wins";
-    {$MarketTicker}
 </script>
 
 <div class={"col-start-1 col-span-2 h-full overflow-y-scroll styled-scrollbars"}>

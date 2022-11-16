@@ -122,7 +122,10 @@ type SeriesSet = {
     [key: string]: {
         question: string,
         id: string,
-        lineData: ISeriesApi<"Line">
+        lineData: ISeriesApi<"Line">,
+        lastFetchedValue: number,
+        currentValue: number,
+        tweener?: Timer
     }
 }
 
