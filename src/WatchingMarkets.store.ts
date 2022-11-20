@@ -1,19 +1,19 @@
 import { derived, writable } from "svelte/store";
 
-type MarketsStore = Manifold.MarketFull[];
+type MarketsStore = Manifold.Market[];
 
 const WatchingMarketsStore = () => {
     const { subscribe, set, update } = writable<MarketsStore>([]);
 
-    const addMarketToWatch = (market: Manifold.MarketFull) => {
+    const addMarketToWatch = (market: Manifold.Market) => {
         update((x) => [ ...x, market ]);
     }
 
-    const removeMarketToWatch = (market: Manifold.MarketFull) => {
+    const removeMarketToWatch = (market: Manifold.Market) => {
         update((x) => x.filter(m => m.id !== market.id));
     }
 
-    const toggleMarketToWatch = (market: Manifold.MarketFull) => {
+    const toggleMarketToWatch = (market: Manifold.Market) => {
         update((x) => {
             if (x.some(m => m.id === market.id)) {
                 return x.filter(m => m.id !== market.id);

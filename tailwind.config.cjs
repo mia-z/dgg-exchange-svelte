@@ -7,6 +7,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      spacing: {
+        "128": "32rem",
+        "144": "36rem"
+      },
       colors: {
         ...colours,
         "bright-lilac": "#cd84f1",
@@ -42,5 +46,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")]
 }

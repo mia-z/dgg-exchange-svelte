@@ -96,6 +96,28 @@ declare namespace Manifold {
     type Description = {
 
     };
+
+    type User = {
+        id: string,
+        createdTime: number,
+        name: string,
+        url: string,
+        avatarUrl: string,
+        bio: string,
+        twitterHandle: string,
+        totalDeposits: number,
+        balance: number,
+        profitCached: ProfitCached,
+        creatorVolumeCached: CreatorVolumeCached
+    };
+
+    type CreatorVolumeCached = {
+
+    };
+
+    type ProfitCached = {
+        
+    }
 }
 
 type DataPoint = {
@@ -141,4 +163,8 @@ type DggEmote = {
         height: number,
         width: number
     }[]
+}
+
+type TabbedContainerViews = {
+    [key: string]: typeof SvelteComponent
 }

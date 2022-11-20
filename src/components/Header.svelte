@@ -5,7 +5,7 @@
 </script>
 
 <header class={"h-20 dark:bg-slate-700 shadow-lg"}>
-    <div class={"grid md:grid-cols-5 grid-cols-3 grid-rows-1 h-full"}>
+    <div class={"grid md:grid-cols-5 grid-cols-3 grid-rows-1 h-full relative"}>
         <div class={"col-span-1 md:col-start-3 col-start-2 relative flex"}>
             <div class={"select-none relative text-4xl m-auto"}>
                 <span class={"font-bold text-lightBlue-500"}>D</span>GG Exchange

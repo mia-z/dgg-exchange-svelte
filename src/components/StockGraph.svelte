@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { createChart, PriceScaleMode, type IChartApi, type ISeriesApi, type Nominal } from "lightweight-charts";
-    import { onMount, onDestroy } from "svelte";
+    import { createChart, type IChartApi, type Nominal } from "lightweight-charts";
+    import { onMount } from "svelte";
     import Queries from "../lib/Queries";
     import { useQuery } from "@sveltestack/svelte-query";
     import { WatchingMarketsSimple, WatchingMarkets } from "../WatchingMarkets.store";
@@ -113,10 +113,8 @@
     {$queryHandler}
 </script>
 
-<div class={"ml-2 col-span-5 flex flex-col h-100 relative"}>
-    <img src="https://cdn.destiny.gg/img/dgg-logo.svg" class={"absolute top-[calc(50%-5rem)] left-[calc(50%-10rem)] w-[20rem] opacity-30"} alt="destiny logo" />
+<div class={"ml-2 col-span-7 flex flex-col h-100 relative pointer-events-none"}>
     <div id={"chart-box"} class={"h-full"} bind:this={chartElement}>
         <!-- The graph goes in here! -->
     </div>
-    <!-- <button class={"absolute left-30 -bottom-20 h-10 w-20 bg-red-500"}>ADD</button> -->
 </div>
