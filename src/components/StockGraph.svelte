@@ -48,6 +48,7 @@
             const thisLinesData = newData.find(x => x.id === id);
             if (!thisLinesData) {
                 console.log("got some data where a line didnt exist, removing");
+                clearInterval(seriesSets[id].tweener);
                 chart.removeSeries(seriesSets[id].lineData);
                 delete seriesSets[id]
             } else {
@@ -113,7 +114,7 @@
     {$queryHandler}
 </script>
 
-<div class={"ml-2 col-span-7 flex flex-col h-100 relative pointer-events-none"}>
+<div class={"ml-2 col-span-7 z-10 flex flex-col h-100 relative pointer-events-none"}>
     <div id={"chart-box"} class={"h-full"} bind:this={chartElement}>
         <!-- The graph goes in here! -->
     </div>

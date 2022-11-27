@@ -913,6 +913,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.11.6, @popperjs/core@npm:^2.9.3":
+  version: 2.11.6
+  resolution: "@popperjs/core@npm:2.11.6"
+  checksum: 47fb328cec1924559d759b48235c78574f2d71a8a6c4c03edb6de5d7074078371633b91e39bbf3f901b32aa8af9b9d8f82834856d2f5737a23475036b16817f0
+  languageName: node
+  linkType: hard
+
 "@smui-extra/accordion@npm:^7.0.0-beta.0":
   version: 7.0.0-beta.0
   resolution: "@smui-extra/accordion@npm:7.0.0-beta.0"
@@ -1467,6 +1474,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@svelte-plugins/tooltips@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@svelte-plugins/tooltips@npm:0.1.6"
+  checksum: 316476855ba36c955f2a2457632a8369d2c8d5262178949350032c0964d0f36c5f70b015f07dd9f75890387146b621233a09004ed76894d331f19ccc3757cc6c
+  languageName: node
+  linkType: hard
+
 "@sveltejs/vite-plugin-svelte@npm:^1.1.0":
   version: 1.2.0
   resolution: "@sveltejs/vite-plugin-svelte@npm:1.2.0"
@@ -1543,6 +1557,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 19eb71acc4b0d7db2170732a51ad18a34007021f42069652a5be8a3e3a448a470d2f970b9e85f734d1896bf3a25e48fb5132b4a989c101eb5df21cc171d426c5
+  languageName: node
+  linkType: hard
+
+"@zerodevx/svelte-toast@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "@zerodevx/svelte-toast@npm:0.8.2"
+  checksum: 633ddf8d0f1975d1ca8de29e563ac58099f3324cf785e8d6c4e3f57b5015207544aed6fc3d0d00d440e2a084df3d1466d423fe75520a0852b08ea7bae6eb6cb2
   languageName: node
   linkType: hard
 
@@ -1879,6 +1900,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -2041,16 +2069,20 @@ __metadata:
   dependencies:
     "@smui/tab": ^7.0.0-beta.0
     "@smui/tab-bar": ^7.0.0-beta.0
+    "@svelte-plugins/tooltips": ^0.1.6
     "@sveltejs/vite-plugin-svelte": ^1.1.0
     "@sveltestack/svelte-query": ^1.6.0
     "@tailwindcss/line-clamp": ^0.4.2
     "@tsconfig/svelte": ^3.0.0
+    "@zerodevx/svelte-toast": ^0.8.2
     autoprefixer: ^10.4.13
     axios: ^1.1.3
     eslint: ^8.27.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-svelte: ^2.13.0
+    flowbite: ^1.5.4
+    flowbite-svelte: ^0.28.1
     lightweight-charts: ^3.8.0
     postcss: ^8.4.19
     prettier: ^2.7.1
@@ -2060,6 +2092,7 @@ __metadata:
     svelte-fast-marquee: ^0.4.1
     svelte-icons: ^2.1.0
     svelte-lightweight-charts: ^1.6.3
+    svelte-loading-spinners: ^0.3.4
     svelte-marquee-text-widget: ^1.1.0
     svelte-material-ui: ^7.0.0-beta.0
     svelte-preprocess: ^4.10.7
@@ -2646,6 +2679,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flowbite-svelte@npm:^0.28.1":
+  version: 0.28.1
+  resolution: "flowbite-svelte@npm:0.28.1"
+  dependencies:
+    "@popperjs/core": ^2.11.6
+    classnames: ^2.3.2
+    flowbite: ^1.5.3
+  checksum: 034e695bda03a4d6757f0e0064f98383cce4c2109ca72ff9cb0aab0760bc91d8712bf0cd2188db8e49457708d73634513c82a1f948899e804bb8468f08ae4240
+  languageName: node
+  linkType: hard
+
+"flowbite@npm:^1.5.3, flowbite@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "flowbite@npm:1.5.4"
+  dependencies:
+    "@popperjs/core": ^2.9.3
+    mini-svg-data-uri: ^1.4.3
+  checksum: bed458380ec26eb3007669758ccf2276017ae7d9c60c80ba4090fe119e56bab071b3dc1ad9b8a9123478b0f1a8c082be6a1676fc4a6f04a3df3c4577e916be97
+  languageName: node
+  linkType: hard
+
 "follow-redirects@npm:^1.15.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
@@ -3199,6 +3253,15 @@ __metadata:
   version: 1.0.1
   resolution: "min-indent@npm:1.0.1"
   checksum: bfc6dd03c5eaf623a4963ebd94d087f6f4bbbfd8c41329a7f09706b0cb66969c4ddd336abeb587bc44bc6f08e13bf90f0b374f9d71f9f01e04adc2cd6f083ef1
+  languageName: node
+  linkType: hard
+
+"mini-svg-data-uri@npm:^1.4.3":
+  version: 1.4.4
+  resolution: "mini-svg-data-uri@npm:1.4.4"
+  bin:
+    mini-svg-data-uri: cli.js
+  checksum: 997f1fbd8d59a70f03761e18626d335197a3479cb9d1ff75678e4b64b864d32a0b8fc18115eabde035e5299b8b4a354a78e57dd6ac10f9d604162a6170898d09
   languageName: node
   linkType: hard
 
@@ -4126,6 +4189,13 @@ __metadata:
     lightweight-charts: ">=3.3.0"
     svelte: ">=3.44.0"
   checksum: 542f1a79db2198b6150edd04888d5abe425f551e456170ecbb0934a16d5577d5086541e867d3d927d437d14ed1603fff503d77ef472e88acdf6b41bc63d7fd5f
+  languageName: node
+  linkType: hard
+
+"svelte-loading-spinners@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "svelte-loading-spinners@npm:0.3.4"
+  checksum: 33584fd52c10ccef3937977865002c997bd98be8284108ab4e682303bedbeaebc37a8c2d6bd1a98a6ade7272c22b4a7a76c80f96bd9b643dc6fa4db36750da27
   languageName: node
   linkType: hard
 

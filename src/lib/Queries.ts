@@ -1,8 +1,14 @@
 import axios from "axios";
 
-//https://manifold.markets/api/v0/markets
+//https://manifold.markets/api/v0/groups
 export const GetAllGroups = async (): Promise<Array<Manifold.Group>> => {
     const res = await axios.get<Array<Manifold.Group>>(`https://manifold.markets/api/v0/groups`);
+    return res.data;
+}
+
+//https://manifold.markets/api/v0/group/[slug]
+export const GetGroupBySlug = async (slug: string): Promise<Manifold.Group> => {
+    const res = await axios.get<Manifold.Group>(`https://manifold.markets/api/v0/group/${slug}`);
     return res.data;
 }
 
@@ -51,6 +57,7 @@ export const GetUserById = async (id: string): Promise<Manifold.User> => {
 export const Queries = {
     GetUserById,
     GetAllGroups,
+    GetGroupBySlug,
     GetMarketById,
     GetMarketsById,
     GetMarketsInGroupById,

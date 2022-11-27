@@ -3,5 +3,5 @@
 </script>
 
 <div>
-    favourites
+    polls view
 </div>

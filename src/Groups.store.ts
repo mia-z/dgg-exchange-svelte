@@ -1,18 +1,23 @@
 import { derived, writable } from "svelte/store";
-import { getStoredValue } from "./lib/Utils";
+import { getStoredValue, setStoredValue, updateStoredValue } from "./lib/Utils";
 
 type GroupsStore = Manifold.Group[]
 
 const GroupsStore = () => {
-    const groupsCache = getStoredValue<Manifold.Group[]>("groupscache") || [];
+    let groupsCache = getStoredValue<Manifold.Group[]>("groupscache") || [];
     const { subscribe, set, update } = writable<GroupsStore>(groupsCache);
 
     const setGroups = (groups: Manifold.Group[]) => {
         set(groups);
     }
 
-    const updateGroups = (groups: Manifold.Group[]) => {
-        update((x) => { return [ ...x, ...groups ] });
+    const updateGroups = (newGroup: Manifold.Group) => {
+        update((x) => { 
+            if (!x.some(g => g.id === newGroup.id)) {
+                updateStoredValue("groupscache", [newGroup]);
+                return [ ...x, newGroup ];
+            }
+        });
     }
 
     return {

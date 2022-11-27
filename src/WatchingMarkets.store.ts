@@ -1,6 +1,13 @@
 import { derived, writable } from "svelte/store";
+import { toast } from "@zerodevx/svelte-toast";
 
 type MarketsStore = Manifold.Market[];
+
+const theme = {
+    "--toastColor": "mintcream",
+    "--toastBackground": "rgba(72,187,120,0.9)",
+    "--toastBarBackground": "#2F855A"
+}
 
 const WatchingMarketsStore = () => {
     const { subscribe, set, update } = writable<MarketsStore>([]);
@@ -16,8 +23,10 @@ const WatchingMarketsStore = () => {
     const toggleMarketToWatch = (market: Manifold.Market) => {
         update((x) => {
             if (x.some(m => m.id === market.id)) {
+                toast.push("Stopped watching " + market.question)
                 return x.filter(m => m.id !== market.id);
             } else {
+                toast.push("Watching " + market.question)
                 return [ ...x, market ];
             }
         });

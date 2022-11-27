@@ -3,7 +3,7 @@
 const colours = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["src/**/*.{tsx,ts,js,jsx,html,svelte}"],
+  content: ["src/**/*.{tsx,ts,js,jsx,html,svelte}", "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}",],
   darkMode: "class",
   theme: {
     extend: {
@@ -42,9 +42,10 @@ module.exports = {
         "bubble-gum": "#ff77e9",
         "bermuda": "#78dcca",
         "green": "#1db954",
-        "black": "#191414"
+        "black": "#191414",
+        "text-black": "#404040"
       }
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")]
+  plugins: [require("@tailwindcss/line-clamp"), require("flowbite/plugin")]
 }

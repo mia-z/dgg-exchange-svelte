@@ -11,7 +11,7 @@
 
     const queryResult = useQuery({
         queryFn: () => Queries.GetMarqueePermanents(DESTINYGG_GROUP_ID),
-        queryKey: ["groupMarkets", DESTINYGG_GROUP_ID],
+        queryKey: ["marqueeCollection", DESTINYGG_GROUP_ID],
         refetchOnWindowFocus: false,
         onSuccess: (data) => {
             const filteredResults = data.filter(m => (m.creatorUsername === "Cooley" || m.creatorUsername === "memestiny"));

@@ -166,5 +166,14 @@ type DggEmote = {
 }
 
 type TabbedContainerViews = {
-    [key: string]: typeof SvelteComponent
+    [key: string]: {
+        component: typeof SvelteComponent,
+        icon: typeof SvelteComponent,
+        enabled: boolean
+    }
+}
+
+type GroupEntry = {
+    group: Manifold.Group,
+    slug: string
 }
