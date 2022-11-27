@@ -1,0 +1,8 @@
+dist
+.yarn
+*.yaml
+*.yml
+*.scss
+*.css
+public
+.md

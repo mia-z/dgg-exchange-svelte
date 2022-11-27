@@ -1,0 +1,17 @@
+ {
+    "extends": [
+        "eslint:recommended",
+        "plugin:svelte/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "rules": {
+        "prettier/prettier": "error"
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "ignorePatterns":[
+        "dist",
+        "__tests__"
+    ]
+}

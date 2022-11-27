@@ -1,9 +1,11 @@
 import { derived, writable } from "svelte/store";
+import { getStoredValue } from "./lib/Utils";
 
 type MarketsStore = Manifold.Market[]
 
 const MarketsStore = () => {
-    const { subscribe, set, update } = writable<MarketsStore>([]);
+    const groupsCache = getStoredValue<Manifold.Market[]>("defaultmarketscache") || [];
+    const { subscribe, set, update } = writable<MarketsStore>(groupsCache);
 
     const setDggMarkets = (markets: Manifold.Market[]) => {
         set(markets);
