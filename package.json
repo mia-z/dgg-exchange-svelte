@@ -6,7 +6,8 @@
     "dev:local": "vite",
     "dev:docker": "docker-compose up --build --force-recreate",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview:docker": "docker build -t t -f Dockerfile.prod . && docker run --rm -p 80:80 -p 443:443 t",
+    "preview:local": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "prettier": "prettier --check ."
   },
